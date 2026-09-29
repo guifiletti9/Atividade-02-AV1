@@ -1,0 +1,163 @@
+﻿Nome: Guilherme Filetti da Silva Beatta
+Nome: Camilly Vitória Gilioti do Nascimento
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package com.mycompany.trabalho;
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+
+/**
+ *
+ * @author fef
+ */
+public class jogodavelha {
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner ler = new Scanner(System.in);
+        Random aleatorio = new Random();
+        
+        int [] jogo = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        
+        int jogador, maquina, jogadas = 0;
+        boolean ganhou = false;
+        
+        while (ganhou == false && jogadas < 9) {
+            
+            for (int i = 0; i < 9; i++) {
+                if (jogo[i] == 0){
+                    System.out.print("");
+                }
+                
+                if (jogo[i] == 1){
+                    System.out.print("X");
+                }
+                if (jogo[i] == 2){
+                System.out.print("O");
+                }
+                if (i == 2 || i == 5)
+                {
+                    System.out.println();
+        System.out.println("-------");
+                } else if (i < 8) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println("\n\n Escolha uma posicao de 1 a 9:");
+            jogador = ler.nextInt();
+            jogador = jogador - 1;
+            
+            if (jogador >= 0 && jogador < 9 && jogo[jogador] == 0){
+                
+                jogo[jogador] = 1;
+                jogadas++;
+            } else {
+                
+                System.out.println("Posicao invalida");
+                continue;
+            }
+            
+            if(
+                    (jogo[0] == 1 &&
+                jogo[1] == 1 && jogo[2] == 1)|| 
+                    (jogo[3] == 1 &&
+                jogo[4] == 1 && jogo[5] == 1)||
+                    (jogo [6] == 1 &&
+                jogo [7] == 1 && jogo [8] ==1)||
+                    
+                    (jogo[0] == 1 &&
+                jogo [3] == 1 && jogo [6] == 1)||
+                    (jogo[1] == 1 &&
+                jogo[4] == 1 && jogo[7] == 1)||
+                    (jogo[2] == 1 &&
+                jogo[5] == 1 && jogo[8] == 1)||
+                    
+                    (jogo[0] == 1 &&
+                jogo[4] == 1 && jogo[8] == 1)||
+                    (jogo[2] == 1 &&
+                jogo [4] == 1 && jogo[6] == 1)
+                    ) {
+                        ganhou = true;
+                        
+              System.out.println("\nVoce ganhou!");
+              
+                    break;
+            }
+            
+            if (jogadas < 9) {
+                do {
+                    maquina =
+          aleatorio.nextInt(9);
+                } while
+          (jogo[maquina] != 0);
+                
+                         jogo[maquina]= 2;
+                         jogadas++;
+                         
+          System.out.println("\n A maquina jogou!");
+          
+          
+                   if(
+                    (jogo[0] == 2 &&
+                jogo[1] == 2 && jogo[2] == 2)|| 
+                    (jogo[3] == 2 &&
+                jogo[4] == 2 && jogo[5] == 2)||
+                    (jogo [6] == 2 &&
+                jogo [7] == 2 && jogo [8] == 2)||
+                    
+                    (jogo[0] == 2 &&
+                jogo [3] == 2 && jogo [6] == 2)||
+                    (jogo[1] == 2 &&
+                jogo[4] == 2 && jogo[7] == 2)||
+                    (jogo[2] == 2 &&
+                jogo[5] == 2 && jogo[8] == 2)||
+                    
+                    (jogo[0] == 2 &&
+                jogo[4] == 2 && jogo[8] == 2)||
+                    (jogo[2] == 2 &&
+                jogo [4] == 2 && jogo[6] == 2)
+                    ) {
+                       ganhou = true;
+                       
+                       System.out.println("\n A maquina ganhou!");
+                       
+                       break;
+                   }
+            }
+        }
+        
+        System.out.println("\n--- FIM DE JOGO ---");
+        for (int i = 0; i < 9; i++) {
+            if (jogo[i] == 0){
+                System.out.print(" ");
+            } else if (jogo[i] == 1) {
+                System.out.print("X");
+            } else if (jogo[i] == 2) {
+                System.out.print("O");
+            }
+            
+            if (i == 2 || i == 5) {
+                System.out.println();
+                System.out.println("-------");
+            } else if (i < 8) {
+                System.out.print(" | ");
+            
+            }
+        }
+        if (ganhou == false) {
+        System.out.println("\nDeu empate!");
+        }
+
+
+            }
+    }
